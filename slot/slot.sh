@@ -38,13 +38,13 @@ game_start_end() {
         exit 0
         ;;
       *)
-        echo "y または n を入力してください!"
+        echo "Please input y or n"
         ;;
     esac
   done
 }
 printf "\e[5;1H"
-msg="ゲームを始めますか？ [y/n]: "
+msg="Would you like to start the game? [y/n]: "
 game_start_end "$msg"
 
 trapped() {
@@ -88,7 +88,7 @@ slot_judge() {
       else
         printf "\e[2;1H*[|$c1%s$ce|$c1%s$ce|$c1%s$ce|]*\e[1G" ${card_1} ${card_2} ${card_3}
       fi
-      printf "\e[5;1H\e[K残念でした!\n"
+      printf "\e[5;1H\e[Kfailed..\n"
       return
       ;;
     *)
@@ -117,7 +117,7 @@ display_slot() {
 
 success_show() {
   display_slot
-  printf "\e[5;1Hおめでとうございます!\n"
+  printf "\e[5;1HCongratulations!\n"
 }
 
 slot_machine() {
@@ -168,7 +168,7 @@ do
         usr_num=$((usr_num * -1))
         break
       else
-        printf "\e[5;1H何も入力せずに、Enterキーを押してください!"
+        printf "\e[5;1HNo inputs and push Enter"
       fi
     done
   done
@@ -176,6 +176,6 @@ do
   wait
 
   printf "\e[7;1H"
-  msg="もう一度チャレンジしますか？ [y/n]: "
+  msg="Do you want to try again? [y/n]: "
   game_start_end "$msg"
 done
